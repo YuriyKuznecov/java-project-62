@@ -12,16 +12,16 @@ public class Progression {
             numbers[0] = (int) (Math.random() * 10);
             int step = (int) (Math.random() * 11) - 1;
             var replaceIndex = (int) (Math.random() * 10);
-            var question = "";
+            StringBuilder question = new StringBuilder();
             for (var i = 1; i < numbers.length; i++) {
                 numbers[i] = numbers[i - 1] + step;
             }
             String correctAnswer = String.valueOf(numbers[replaceIndex]);
             for (var i = 0; i < numbers.length; i++) {
                 if (i == replaceIndex) {
-                    question += ".. ";
+                    question.append(".. ");
                 } else {
-                    question += numbers[i] + " ";
+                    question.append(numbers[i]).append(" ");
                 }
             }
             System.out.println("Question: " + question);
