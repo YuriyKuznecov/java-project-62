@@ -14,7 +14,7 @@ public class GCD {
             System.out.println("Question: " + question);
             System.out.println("Your Answer: ");
             String answer = scan.next();
-            String correctAnswer = String.valueOf(gcd(number1, number2));
+            String correctAnswer = Integer.toString(gcd(number1, number2));
             Engine.engine(answer, correctAnswer);
         } while (Engine.isCorrect && Engine.count < 3);
     }

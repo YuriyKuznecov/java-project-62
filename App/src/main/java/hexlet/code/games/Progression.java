@@ -8,15 +8,10 @@ public class Progression {
         Scanner scan = new Scanner(System.in);
         System.out.println("What number is missing in the progression?");
         do {
-            int[] numbers = new int[10];
-            numbers[0] = (int) (Math.random() * 10);
-            int step = (int) (Math.random() * 11) - 1;
+            var numbers = createProgression();
             var replaceIndex = (int) (Math.random() * 10);
             StringBuilder question = new StringBuilder();
-            for (var i = 1; i < numbers.length; i++) {
-                numbers[i] = numbers[i - 1] + step;
-            }
-            String correctAnswer = String.valueOf(numbers[replaceIndex]);
+            String correctAnswer = Integer.toString(numbers[replaceIndex]);
             for (var i = 0; i < numbers.length; i++) {
                 if (i == replaceIndex) {
                     question.append(".. ");
@@ -29,5 +24,16 @@ public class Progression {
             String answer = scan.next();
             Engine.engine(answer, correctAnswer);
         } while (Engine.isCorrect && Engine.count < 3);
+    }
+
+    static int[] createProgression() {
+        var arrayLength = (int) (Math.random() * 6) + 5;
+        int[] numbers = new int[arrayLength];
+        numbers[0] = (int) (Math.random() * 10);
+        int step = (int) (Math.random() * 9) + 1;
+        for (var i = 1; i < numbers.length; i++) {
+            numbers[i] = numbers[i - 1] + step;
+        }
+        return numbers;
     }
 }

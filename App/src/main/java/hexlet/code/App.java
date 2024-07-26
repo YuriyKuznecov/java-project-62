@@ -23,7 +23,11 @@ public class App {
         System.out.print("Your choice: ");
         String number = scanner.next();
         System.out.print("\n");
-        switch (number) {
+        selectGame(number);
+    }
+
+    static void selectGame(String str) {
+        switch (str) {
             case "1" :
                 Greeting.greeting();
                 break;
