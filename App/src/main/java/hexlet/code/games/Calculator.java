@@ -3,34 +3,39 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 import java.util.Scanner;
 
+@SuppressWarnings("ALL")
 public class Calculator {
+    static String correctAnswer;
     public static void calc() {
         Scanner scan = new Scanner(System.in);
         System.out.println("What is the result of the expression?");
-        String question = "";
-        String correctAnswer = "";
+        String op = "";
         do {
             var number1 = (int) (Math.random() * 100);
             var number2 = (int) (Math.random() * 100);
             var operator = (int) (Math.random() * 3);
-            if (operator != 0) {
-                if (operator == 1) {
-                    question = "%d - %d".formatted(number1, number2);
-                    correctAnswer = String.valueOf(number1 - number2);
-                } else if (operator == 2) {
-                    question = "%d * %d".formatted(number1, number2);
-                    correctAnswer = String.valueOf(number1 * number2);
-                }
-            } else {
-                question = "%d + %d".formatted(number1, number2);
-                correctAnswer = String.valueOf(number1 + number2);
-            }
-            System.out.println("Question: " + question);
+            op = randomOperarator(number1, number2);
+            System.out.println("Question: " + number1 + op + number2);
             System.out.println("Your answer: ");
             String answer = scan.next();
             Engine.engine(answer, correctAnswer);
         } while (Engine.isCorrect && Engine.count < 3);
         scan.close();
+    }
+
+    static String randomOperarator(int a, int b) {
+        var op = (int) (Math.random() * 3);
+        switch (op) {
+            case 0 :
+                correctAnswer = Integer.toString(a + b);
+                return "+";
+            case 1 :
+                correctAnswer = Integer.toString(a - b);
+                return "-";
+            default:
+                correctAnswer = Integer.toString(a * b);
+                return "*";
+        }
     }
 
 
